@@ -1,18 +1,18 @@
 class QuizzesController < ApplicationController
  def index
-    @quiz = Quiz.all
+    @quiz = Quizz.all
   end
 
   def show
-    @quiz = Quiz.find(params[:id])
+    @quiz = Question.where(:quiz_id => params[:id])
   end
 
   def new 
-    @quiz ||= Quiz.new
+    @quiz ||= Quizz.new
   end
 
   def create
-    quiz = Quiz.new(quiz_params)
+    @quiz = Quizz.new(quiz_params.merge({ :created_by => session[:user_id] }))
     if @quiz.save
       redirect_to root_path
     else
@@ -23,6 +23,6 @@ class QuizzesController < ApplicationController
   private
 
   def quiz_params
-    params.require(:quiz).permit(:id, :created_by, :quiz_name)
+    params.require(:quizz).permit(:id, :created_by, :quiz_name)
   end
 end

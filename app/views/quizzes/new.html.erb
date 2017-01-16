@@ -1,2 +1,14 @@
-<h1>Quizzes#index</h1>
-<p>Find me in app/views/quizzes/index.html.erb</p>
+<%= form_for @quiz, url: {action: "create"},:html => {:class => "form-horizontal"}   do | tag| %>
+  <div class="form-group">
+    <%= tag.label :quiz_name, :class => "control-label col-sm-2" %>
+    <div class="col-sm-6">
+    <%= tag.text_field :quiz_name, :placeholder => "Quiz name", :required => true, :class => "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+   <div class="col-sm-offset-2 col-sm-10">
+    <%= tag.submit "Add new quiz", class: "btn btn-default" %>
+    </div>
+  </div>
+<% end %>

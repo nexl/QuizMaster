@@ -1,2 +1,16 @@
-<h1>Quizzes#index</h1>
-<p>Find me in app/views/quizzes/index.html.erb</p>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Question</th>
+      <th>Answer</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @quiz.each do | quiz | %>
+    <tr>
+      <td><%= quiz.question%></td>
+      <td><%= quiz.answer%></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
