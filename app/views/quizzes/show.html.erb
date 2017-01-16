@@ -3,13 +3,15 @@
     <tr>
       <th>Question</th>
       <th>Answer</th>
+      <th>Link to</th>
     </tr>
   </thead>
   <tbody>
     <% @quiz.each do | quiz | %>
     <tr>
-      <td><%= quiz.question%></td>
-      <td><%= quiz.answer%></td>
+      <td><%= quiz.question.html_safe %></td>
+      <td><%= quiz.answer %></td>
+      <td><%= link_to "Question", question_path(quiz) %></td>
     </tr>
     <% end %>
   </tbody>

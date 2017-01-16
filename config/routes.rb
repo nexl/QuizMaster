@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  
+  mount Bootsy::Engine => '/bootsy', as: 'bootsy'
+    
   get '/logon', :to => 'users#login'
   post '/login', :to => 'sessions#create'
   delete '/logout', :to => 'sessions#destroy'

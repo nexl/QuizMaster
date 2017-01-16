@@ -38,6 +38,7 @@ gem 'json'
 gem 'devise'
 gem "font-awesome-rails"
 gem "default_value_for", "~> 3.0.0"
+gem 'bootsy'
 # End of custom gem 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

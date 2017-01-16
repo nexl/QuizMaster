@@ -1,2 +1,29 @@
-<h1>Questions#index</h1>
-<p>Find me in app/views/questions/index.html.erb</p>
+<%= form_for @question, url: {action: "create"},:html => {:class => "form-horizontal"}   do | question | %>
+  <div class="form-group">
+    <%= question.label :quiz_id, :class => "control-label col-sm-2" %>
+    <div class="col-sm-6">
+    <%= question.select(:quiz_id, options_for_select(list_quiz), :class => "form-control") %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= question.label :question, :class => "control-label col-sm-2" %>
+    <div class="col-sm-9">
+    <%= question.bootsy_area :question, :placeholder => "Question", :required => true, :class => "form-control", :rows => 10 %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= question.label :answer, :class => "control-label col-sm-2" %>
+    <div class="col-sm-6">
+    <%= question.text_field :answer, :placeholder => "Answer", :required => true, :class => "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+   <div class="col-sm-offset-2 col-sm-10">
+    <%= question.submit "Add new question", class: "btn btn-default" %>
+    </div>
+  </div>
+<% end %>
+               
