@@ -4,8 +4,10 @@ Rails.application.routes.draw do
   get '/logon', :to => 'users#login'
   post '/login', :to => 'sessions#create'
   delete '/logout', :to => 'sessions#destroy'
-  
+  get 'tryouts/:quizz_id/:question_id', :to =>  "tryouts#show", :as => 'tryout'
+
   resources :questions
+  resources :tryouts
   resources :quizzes
   resources :users
 
