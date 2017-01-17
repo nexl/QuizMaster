@@ -1,0 +1,24 @@
+<div class='entry_title'>
+ <%= f.hidden_field :_destroy, :class => 'removable' %>
+    
+  <div class="form-group">
+    <%= f.label :question, :class => "control-label col-sm-2" %>
+    <div class="col-sm-9">
+    <%= f.bootsy_area :question, :placeholder => "Question", :required => true, :class => "form-control", :rows => 10 %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :answer, :class => "control-label col-sm-2" %>
+    <div class="col-sm-6">
+    <%= f.text_field :answer, :placeholder => "Answer", :required => true, :class => "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-1 col-sm-10">
+      <%= link_to_remove_association("Remove", f, data: {confirm: 'Delete this question ?' }, wrapper_class: 'entry_title', :class => "btn btn-danger btn-sm" ) %>
+    </div>
+  </div>
+  <br/>
+</div>

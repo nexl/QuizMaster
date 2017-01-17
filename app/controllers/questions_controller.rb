@@ -14,7 +14,7 @@ class QuestionsController < ApplicationController
   def create
     @question = Question.new(question_params)
     if @question.save
-      redirect_to root_path
+      redirect_to quiz_path(@question.quizz_id)
     else
       redirect_to root_path
     end
@@ -23,6 +23,6 @@ class QuestionsController < ApplicationController
   private
 
   def question_params
-    params.require(:question).permit(:id, :quiz_id, :question, :answer)
+    params.require(:question).permit(:id, :quizz_id, :question, :answer)
   end
 end
