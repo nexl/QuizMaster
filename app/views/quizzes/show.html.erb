@@ -1,3 +1,4 @@
+<span>List questions</span>
 <table class="table table-hover">
   <thead>
     <tr>
@@ -19,4 +20,25 @@
     </tr>
     <% end %>
   </tbody>
+</table>
+
+<span>Result</span>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Correct answer</th>
+      <th>Wrong answer</th>
+    </tr>
+    <tbody>
+      <% @participants.each do | participant| %>
+      <tr>
+        <td><%= participant.first %></td>
+        <td><%= participant.second.map { |a| a.is_right}.count(true) %></td>
+        <td><%= participant.second.map { |a| a.is_right}.count(false) %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </thead>
+
 </table>

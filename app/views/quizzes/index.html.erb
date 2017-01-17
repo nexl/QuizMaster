@@ -4,14 +4,16 @@
       <th>Quiz name</th>
       <th>Created by</th>
       <th>Detail</th>
+      <th>Tryout</th>
     </tr>
   </thead>
   <tbody>
     <% @quiz.each do | quiz | %>
     <tr>
       <td><%= quiz.quiz_name%></td>
-      <td><%= quiz.quiz_name%></td>
-      <td><%= link_to "Show", quiz_path(quiz.id)%></td>
+      <td><%= quiz.user.full_name%></td>
+      <td><%= link_to "Detail", quiz_path(quiz.id)%></td>
+      <td><%= link_to "Tryout", tryout_path(:quizz_id => quiz.id, :question_id => quiz.question.first) %></td>
     </tr>
     <% end %>
   </tbody>

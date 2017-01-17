@@ -2,8 +2,8 @@ class User < ApplicationRecord
   
   default_value_for :role, 'Student'
 
-  has_many :quizz 
-  has_many :student_answer
+  has_many :quizz, :inverse_of => :user
+  has_many :student_answer, :inverse_of => :user
   
   has_secure_password
   
@@ -14,5 +14,9 @@ class User < ApplicationRecord
   validates :last_name, :presence => true, :format => { :with => ALPHABET_ONLY, :message =>"Alphabet only"}
   validates :email, :presence => true, :format => { :with => EMAIL_REGEX, :message => "Email format is wrong" }, :uniqueness => { :message => "This email already registered"}
   validates :password, :presence => true
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 
 end
