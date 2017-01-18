@@ -1,8 +1,7 @@
 class TryoutsController < ApplicationController
   
   def show
-    @question = Question.find(params[:question_id])
-    @tryout = StudentAnswer.new
+    render component: 'Quiz', props: { quiz_id: params[:quizz_id] }
   end
 
   def create
