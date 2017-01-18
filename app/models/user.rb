@@ -3,7 +3,6 @@ class User < ApplicationRecord
   default_value_for :role, 'Student'
 
   has_many :quizz, :inverse_of => :user
-  has_many :student_answer, :inverse_of => :user
   
   has_secure_password
   
