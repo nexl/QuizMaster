@@ -15,5 +15,9 @@
 //= require bootstrap-sprockets
 //= require cocoon
 //= require bootsy
+//= require react
+//= require react_ujs
+//= require components
+//= require axios
 //= require turbolinks
 //= require_tree .
