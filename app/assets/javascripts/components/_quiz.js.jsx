@@ -7,7 +7,9 @@ var Quiz = React.createClass({
     return { 
       questions: [],
       index: 0,
-      answer: ''} 
+      answer: '',
+      load: false
+    } 
   },
   
   onInputChange(answer){
@@ -17,7 +19,7 @@ var Quiz = React.createClass({
   handleClick(question_id){
     var answer = this.refs.answer.value; 
     newProgress = this.state.index + 1;
-    this.setState({index: newProgress, answer: ''});
+    this.setState({index: newProgress, answer: '', load: false});
     $.ajax({
       url: '/api/v1/quizzes/1',
       type: 'PATCH',
@@ -27,10 +29,11 @@ var Quiz = React.createClass({
         answer: answer,
       }},
       success: (e) => {
-        console.log('success', e)
+        //console.log('success', e)
+        this.setState({load: true})
       },
       error: function(xhr, textStatus, errorThrown){
-       console.log(xhr.responseText);
+        console.log(xhr.responseText);
       }
     });
   },
@@ -39,7 +42,9 @@ var Quiz = React.createClass({
     var current = this.state.questions[this.state.index];
     if (this.state.questions.length == 0){
       return(
-        <div>Loading... </div>
+        <div>
+        <span>Loading ... </span>
+        </div>
       )
     }
     if (this.state.questions.length > this.state.index){
@@ -67,9 +72,10 @@ var Quiz = React.createClass({
         </form>
       )
     }
-    else if (this.state.questions.length == this.state.index){
+    else if (this.state.questions.length == this.state.index && this.state.load == true){
       return(
         <div>
+        <Result quiz_id={ this.props.quiz_id} />
         <div>Quiz is completed !!</div>
         </div>
       )

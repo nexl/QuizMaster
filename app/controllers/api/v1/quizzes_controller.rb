@@ -30,6 +30,11 @@ class Api::V1:: QuizzesController < ApplicationController
     end
   end
 
+  def result
+    result = StudentAnswer.joins(:question).where(:student_id => params[:id]).select("question_content, is_right, student_answers.id")
+    render json: result
+  end
+
   private
   def item_params
     params.require(:quiz).permit(:id, :student_id, :question_id, :answer, :is_right) 

@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   
   namespace :api, :defaults => {:format => :json} do
   namespace :v1 do
+    get '/quizzes/:id/result', :to => 'quizzes#result', as: 'quiz_result'
     resources :quizzes
     end
   end
