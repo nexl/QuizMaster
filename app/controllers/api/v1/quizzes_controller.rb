@@ -7,22 +7,27 @@ class Api::V1:: QuizzesController < ApplicationController
   end
 
   def show
-    quiz = Question.where(:quizz_id => params[:id]).select("id, quizz_id, question")
+    quiz = StudentAnswer.joins(:question).where(:student_id => params[:id], :answer => nil).select("question_content, student_answers.id")
     render json: quiz
   end
 
-  def create
-    question = Question.find(params[:quiz][:question_id])
-    if question.answer.downcase == params[:quiz][:answer].downcase
-      result = true
+  def update 
+    question = StudentAnswer.find(params[:quiz][:question_id])
+    question.answer = params[:quiz][:answer]
+    answer = question.question.answer
+    if answer.downcase == params[:quiz][:answer].downcase
+      question.is_right = true
     # Humanize numbers, like 6 -> six
-    elsif question.answer.to_i.humanize == params[:quiz][:answer].downcase
-      result = true 
+    elsif answer.to_i.humanize == params[:quiz][:answer].downcase
+      question.is_right = true 
     else  #Answer is false
-      result = false
+      question.is_right = false
     end
-    # Create answer on db
-    @tryout = StudentAnswer.create(item_params  .merge({:is_right => result, :student_id => session[:user_id]}))
+    if question.save
+      #puts abcd
+    else
+      Rails.logger.info(question.errors.inspect)
+    end
   end
 
   private
