@@ -6,7 +6,7 @@ class QuizzesController < ApplicationController
   def show
     @quiz = Question.where(:quizz_id => params[:id])
     @participants = StudentAnswer.joins(:question).where('questions.quizz_id = ?', params[:id])
-    @participants = @participants.group_by { | user | user.student.full_name }
+    @participants = @participants.group_by { | user | user.student }
   end
 
   def new 

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
   mount Bootsy::Engine => '/bootsy', as: 'bootsy'
     
   get '/logon', :to => 'users#login'
@@ -10,6 +11,7 @@ Rails.application.routes.draw do
   resources :tryouts
   resources :quizzes
   resources :users
+  resources :students
   
   namespace :api, :defaults => {:format => :json} do
   namespace :v1 do
