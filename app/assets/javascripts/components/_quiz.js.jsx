@@ -19,8 +19,8 @@ var Quiz = React.createClass({
     newProgress = this.state.index + 1;
     this.setState({index: newProgress, answer: ''});
     $.ajax({
-      url: '/api/v1/quizzes',
-      type: 'POST',
+      url: '/api/v1/quizzes/1',
+      type: 'PATCH',
       data: { quiz: {
         student_id : 6,
         question_id : question_id,
@@ -48,7 +48,7 @@ var Quiz = React.createClass({
           <div className="form-group">
             <label className="control-label col-sm-2">Question</label>
             <div className="col-sm-6">
-             <span dangerouslySetInnerHTML={{__html: current.question}} />
+             <span dangerouslySetInnerHTML={{__html: current.question_content}} />
             </div>
           </div>
             <div className="form-group">

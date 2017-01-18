@@ -2,9 +2,9 @@
  <%= f.hidden_field :_destroy, :class => 'removable' %>
     
   <div class="form-group">
-    <%= f.label :question, :class => "control-label col-sm-2" %>
+    <%= f.label "Question", :class => "control-label col-sm-2" %>
     <div class="col-sm-9">
-    <%= f.bootsy_area :question, :placeholder => "Question", :required => true, :class => "form-control", :rows => 10 %>
+    <%= f.bootsy_area :question_content, :placeholder => "Question", :required => true, :class => "form-control", :rows => 10 %>
     </div>
   </div>
 
