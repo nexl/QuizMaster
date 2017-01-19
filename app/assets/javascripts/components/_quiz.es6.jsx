@@ -55,7 +55,10 @@ class Quiz extends React.Component{
     // If quiz already finished
     if (this.state.question.status == "finished"){
       return(
-      <div>You already finished this quiz</div>
+        <div className="panel-setting">
+          <p>You already finished this quiz !</p>
+          <Result quiz_id={ this.props.quiz_id} />
+        </div>
       )
     }
     // Loading ... 
@@ -72,13 +75,13 @@ class Quiz extends React.Component{
         <form className="form-horizontal" action="javascript:myFunction(); return false;">
           <div className="form-group">
             <label className="control-label col-sm-2">Question</label>
-            <div className="col-sm-6">
+            <div className="col-sm-10">
              <span dangerouslySetInnerHTML={{__html: current.question_content}} />
             </div>
           </div>
             <div className="form-group">
               <label className="control-label col-sm-2">Answer</label>
-              <div className="col-sm-6">
+              <div className="col-sm-10">
                 <input ref='answer' placeholder='Answer' required='true' className="form-control" value = { this.state.answer }
         onChange= { event => this.handleChange(event.target.value )} />
               </div>
@@ -95,9 +98,9 @@ class Quiz extends React.Component{
     // Finished, load result
     else if (this.state.question.length == this.state.index && this.state.load == true){
       return(
-        <div>
-        <Result quiz_id={ this.props.quiz_id} />
+        <div className="panel-setting">
         <div>Quiz is completed !!</div>
+        <Result quiz_id={ this.props.quiz_id} />
         </div>
       )
     }

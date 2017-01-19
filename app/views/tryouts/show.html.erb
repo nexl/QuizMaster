@@ -1,1 +1,7 @@
-<%= react_component('Quiz', {quiz_id: params[:quizz_id], token: params[:token] }, { prerender: true }) %> 
+<div class="panel panel-default">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <%= react_component('Quiz', {quiz_id: params[:quizz_id], token: params[:token] }, { prerender: true }) %> 
+    </div>
+  </div>
+</div>
