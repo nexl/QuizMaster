@@ -20,25 +20,4 @@
   </tbody>
 </table>
 
-<span>Result</span>
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Correct answer</th>
-      <th>Wrong answer</th>
-      <th>Take a quiz</th>
-    </tr>
-    <tbody>
-      <% @participants.each do | participant| %>
-      <tr>
-        <td><%= participant.first.full_name %></td>
-        <td><%= participant.second.map { |a| a.is_right}.count(true) %></td>
-        <td><%= participant.second.map { |a| a.is_right}.count(false) %></td>
-        <td><%= link_to "tryout ",tryout_path(participant.first.id) %></td>
-      </tr>
-      <% end %>
-    </tbody>
-  </thead>
-
-</table>
+<%= react_component('Student',quiz_id: params[:id]) %>
