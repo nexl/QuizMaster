@@ -1,1 +1,1 @@
-<!-- <%= react_component('Main', quiz_id: params[:quizz_id]) %> -->
+<%= react_component('Quiz', {quiz_id: params[:quizz_id], token: params[:token] }, { prerender: true }) %> 

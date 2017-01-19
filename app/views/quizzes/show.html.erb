@@ -20,4 +20,4 @@
   </tbody>
 </table>
 
-<%= react_component('Student',quiz_id: params[:id]) %>
+<%= react_component('Student',{ quiz_id: params[:id] }, { prerender: true }) %>
