@@ -8,17 +8,17 @@ Rails.application.routes.draw do
   get 'tryouts/:quizz_id/:token', :to =>  "tryouts#show", :as => 'tryout'
 
   resources :questions
-  resources :quizzes
-  resources :users
-  resources :students
+  resources :quizzes,:only => [:index, :show, :new, :create]
+  resources :users, :except => [:update, :edit, :destroy]
+  resources :students, :only => [:new, :create]
   
   namespace :api, :defaults => {:format => :json} do
   namespace :v1 do
     get '/quizzes/:id/result', :to => 'quizzes#result', as: 'quiz_result'
     get '/quizzes/:id/participant', :to => 'quizzes#participant', as: 'quiz_participant'
     get '/quizzes/:id/:token', :to => 'quizzes#show'
-    resources :quizzes
-    resources :students
+    resources :quizzes, :only => [:index, :show, :update]
+    resources :students, :only => [:index, :create]
     end
   end
 
