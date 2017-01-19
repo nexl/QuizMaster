@@ -1,7 +1,7 @@
 class TryoutsController < ApplicationController
   
   def show
-    render component: 'Quiz', props: { quiz_id: params[:quizz_id] }
+    render component: 'Quiz', props: { quiz_id: params[:quizz_id], token: params[:token] }
   end
 
   def create

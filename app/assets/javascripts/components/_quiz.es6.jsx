@@ -12,7 +12,7 @@ class Quiz extends React.Component{
 
   // Call questions
   apiCall(){
-      var url = '/api/v1/quizzes/' + this.props.quiz_id
+      var url = '/api/v1/quizzes/' + this.props.quiz_id + '/' + this.props.token
       $.getJSON(url, (question) => { 
         this.setState({ question }) 
       });

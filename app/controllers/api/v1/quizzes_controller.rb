@@ -7,7 +7,7 @@ class Api::V1:: QuizzesController < ApplicationController
   end
 
   def show
-    quiz = StudentAnswer.joins(:question).where(:student_id => params[:id], :answer => nil).select("question_content, student_answers.id")
+    quiz = StudentAnswer.joins(:question, :student).where(:student_id => params[:id], :answer => nil).where("students.token = ?", params[:token]).select("question_content, student_answers.id")
     render json: quiz
   end
 
@@ -30,11 +30,13 @@ class Api::V1:: QuizzesController < ApplicationController
     end
   end
 
+  # Quiz result
   def result
     result = StudentAnswer.joins(:question).where(:student_id => params[:id]).select("question_content, is_right, student_answers.id")
     render json: result
   end
 
+  # List quiz participants
   def participant
     quiz = Student.where(:quizz_id => params[:id])
     render json: quiz
