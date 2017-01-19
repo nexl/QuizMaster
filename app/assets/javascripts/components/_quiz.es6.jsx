@@ -1,53 +1,65 @@
-var Quiz = React.createClass({
-  componentDidMount() { 
-    $.getJSON('/api/v1/quizzes/' + this.props.quiz_id, (question) => { this.setState({ questions: question }) }); 
-  },
-  
-  getInitialState() { 
-    return { 
-      questions: [],
-      index: 0,
+// Quiz component
+class Quiz extends React.Component{
+  constructor(props) {
+    super(props);
+    this.state = {
+      question: [],
+      index: 0, 
       answer: '',
-      load: false
-    } 
-  },
-  
-  onInputChange(answer){
-    this.setState({answer});
-  },
+      load: false // flag to hold quiz result
+    };
+  }
 
+  // Call questions
+  apiCall(){
+      var url = '/api/v1/quizzes/' + this.props.quiz_id
+      $.getJSON(url, (question) => { 
+        this.setState({ question }) 
+      });
+  }
+
+  componentDidMount() { 
+    this.apiCall();
+  }
+  
+  handleChange(answer){
+    this.setState({answer});
+  }
+
+  // Submit answer and result : true/false
   handleClick(question_id){
     var answer = this.refs.answer.value; 
-    newProgress = this.state.index + 1;
-    this.setState({index: newProgress, answer: '', load: false});
+    question_index = this.state.index + 1;
+    this.setState({ index: question_index, answer: '', load: false });
     $.ajax({
       url: '/api/v1/quizzes/1',
       type: 'PATCH',
       data: { quiz: {
-        student_id : 6,
         question_id : question_id,
         answer: answer,
       }},
       success: (e) => {
         //console.log('success', e)
-        this.setState({load: true})
+        this.setState({ load: true })
       },
       error: function(xhr, textStatus, errorThrown){
-        console.log(xhr.responseText);
+        //console.log(xhr.responseText);
       }
     });
-  },
+  }
 
   render(){
-    var current = this.state.questions[this.state.index];
-    if (this.state.questions.length == 0){
+    // Mapping questions
+    var current = this.state.question[this.state.index];
+    if (this.state.question.length == 0){
       return(
         <div>
         <span>Loading ... </span>
         </div>
       )
     }
-    if (this.state.questions.length > this.state.index){
+    // Load 1 by 1
+    if (this.state.question.length > this.state.index){
       return(
         <form className="form-horizontal" action="javascript:myFunction(); return false;">
           <div className="form-group">
@@ -60,7 +72,7 @@ var Quiz = React.createClass({
               <label className="control-label col-sm-2">Answer</label>
               <div className="col-sm-6">
                 <input ref='answer' placeholder='Answer' required='true' className="form-control" value = { this.state.answer }
-        onChange= { event => this.onInputChange(event.target.value )} />
+        onChange= { event => this.handleChange(event.target.value )} />
               </div>
             </div>
 
@@ -72,7 +84,8 @@ var Quiz = React.createClass({
         </form>
       )
     }
-    else if (this.state.questions.length == this.state.index && this.state.load == true){
+    // Finished, load result
+    else if (this.state.question.length == this.state.index && this.state.load == true){
       return(
         <div>
         <Result quiz_id={ this.props.quiz_id} />
@@ -86,5 +99,4 @@ var Quiz = React.createClass({
       )
     }
   }
-});
-
+}
