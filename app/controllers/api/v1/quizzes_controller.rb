@@ -35,6 +35,11 @@ class Api::V1:: QuizzesController < ApplicationController
     render json: result
   end
 
+  def participant
+    quiz = Student.where(:quizz_id => params[:id])
+    render json: quiz
+  end
+
   private
   def item_params
     params.require(:quiz).permit(:id, :student_id, :question_id, :answer, :is_right) 

@@ -8,7 +8,7 @@ class Student extends React.Component {
   }
   
   apiCall(){
-    var url = '/api/v1/students'
+    var url = '/api/v1/quizzes/'+ this.props.quiz_id +'/participant'
     $.getJSON(url, (students) => { 
       this.setState({ students }) 
     }); 
