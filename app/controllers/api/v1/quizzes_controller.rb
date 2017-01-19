@@ -8,7 +8,14 @@ class Api::V1:: QuizzesController < ApplicationController
 
   def show
     quiz = StudentAnswer.joins(:question, :student).where(:student_id => params[:id], :answer => nil).where("students.token = ?", params[:token]).select("question_content, student_answers.id")
+    # If quiz already finished (no more questions)
+    if quiz.empty?
+      quiz = {:status => 'finished'}
+      render :json => quiz
+    else
+    # if quiz has remaining questions
     render json: quiz
+    end
   end
 
   def update 

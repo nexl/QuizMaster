@@ -51,14 +51,22 @@ class Quiz extends React.Component{
   render(){
     // Mapping questions
     var current = this.state.question[this.state.index];
+
+    // If quiz already finished
+    if (this.state.question.status == "finished"){
+      return(
+      <div>You already finished this quiz</div>
+      )
+    }
+    // Loading ... 
     if (this.state.question.length == 0){
       return(
         <div>
-        <span>Loading ... </span>
+          <span>Loading ... </span>
         </div>
       )
     }
-    // Load 1 by 1
+    // Quiz found, Load 1 by 1
     if (this.state.question.length > this.state.index){
       return(
         <form className="form-horizontal" action="javascript:myFunction(); return false;">
