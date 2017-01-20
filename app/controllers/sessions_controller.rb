@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
       end
       if user && user.authenticate(params[:user][:password])
         set_login(user)
-        redirect_to user
+        redirect_to quizzes_path
       else
         redirect_to sign_in
       end

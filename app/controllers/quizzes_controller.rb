@@ -1,6 +1,10 @@
 class QuizzesController < ApplicationController
- def index
-    @quiz = Quizz.all
+
+  before_action :require_login
+  before_action :is_owner?, :only => [:show]
+  
+  def index
+    @quiz = Quizz.where(:created_by => current_user.id)
   end
 
   def show
@@ -16,7 +20,7 @@ class QuizzesController < ApplicationController
   end
 
   def create
-    @quiz = Quizz.new(quiz_params.merge({ :created_by => session[:user_id] }))
+    @quiz = Quizz.new(quiz_params.merge({ :created_by => current_user.id}))
     if @quiz.save
       redirect_to quiz_path(@quiz)
     else
@@ -31,4 +35,11 @@ class QuizzesController < ApplicationController
     params.require(:quizz).permit(:id, :created_by, :quiz_name, 
       :question_attributes => [:id, :quizz_id, :question_content, :answer, :_destroy])
   end
+
+  # Check if the current user is owner of this quiz ?
+  def is_owner?
+    quiz = Quizz.find(params[:id])
+    redirect_to root_path if quiz.created_by != current_user.id
+  end
+
 end

@@ -1,4 +1,8 @@
 class QuestionsController < ApplicationController
+  
+  before_action :require_login
+  before_action :is_owner?, :only => [:edit]
+
   def index
     @question = Question.all
   end
@@ -44,5 +48,11 @@ class QuestionsController < ApplicationController
 
   def question_params
     params.require(:question).permit(:id, :quizz_id, :question_content, :answer)
+  end
+
+  # Check if the current user is owner of this question ?
+  def is_owner?
+    question = Question.find(params[:id])
+    redirect_to root_path if question.quizz.created_by != current_user.id
   end
 end
