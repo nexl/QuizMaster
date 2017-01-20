@@ -4,8 +4,8 @@ const StudentListDetail = ({full_name, link_id, token, handleDelete , index}) =>
   return(
     <tr>
       <td>{ full_name } </td>
-      <td><a target="_blank" href={`../tryouts/${link_id}/${token}`}>Tryout</a></td>
-      <td onClick={ index => handleDelete(index) } >Remove</td>
+      <td><a target="_blank" href={`../tryouts/${link_id}/${token}`} className="btn btn-default btn-sm">Tryout</a></td>
+      <td><button onClick={ index => handleDelete(index) }  type="button" className="btn btn-danger btn-sm">Delete { full_name }</button></td>
     </tr>
   )
 }
