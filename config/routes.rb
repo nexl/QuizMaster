@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     get '/quizzes/:id/participant', :to => 'quizzes#participant', as: 'quiz_participant'
     get '/quizzes/:id/:token', :to => 'quizzes#show'
     resources :quizzes, :only => [:index, :show, :update]
-    resources :students, :only => [:index, :create]
+    resources :students, :only => [:index, :create, :destroy]
     end
   end
 
