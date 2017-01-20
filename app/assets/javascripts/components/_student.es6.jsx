@@ -11,10 +11,10 @@ class Student extends React.Component {
     var url = '/api/v1/quizzes/'+ this.props.quiz_id + '/participant'
     $.getJSON(url, (students) => { 
       this.setState({ students }) 
-    }); 
+    });
   }
 
-  componentDidMount() { 
+  componentDidMount() {
     this.apiCall();
   }
 
@@ -28,8 +28,10 @@ class Student extends React.Component {
     // Render a form to assign a new student and list students
     return(
      <div>
-       <span>List student</span>
+       <h3>Assign new student</h3>
        <StudentForm quiz_id={ this.props.quiz_id } handleAdd={ event => this.handleAdd(event) } />
+       <br/>
+       <h3>List students</h3>
        <StudentListHeader student={ this.state.students }  />
      </div>
     )

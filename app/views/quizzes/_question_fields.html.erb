@@ -1,6 +1,5 @@
-<div class='entry_title'>
- <%= f.hidden_field :_destroy, :class => 'removable' %>
-    
+<div class="panel panel-default abcd">
+ <%= f.hidden_field :_destroy, :class => 'removable' %>    
   <div class="form-group">
     <%= f.label "Question", :class => "control-label col-sm-2" %>
     <div class="col-sm-9">
@@ -17,7 +16,7 @@
 
   <div class="form-group">
     <div class="col-sm-offset-1 col-sm-10">
-      <%= link_to_remove_association("Remove", f, data: {confirm: 'Delete this question ?' }, wrapper_class: 'entry_title', :class => "btn btn-danger btn-sm" ) %>
+      <%= link_to_remove_association("Remove", f, data: {confirm: 'Delete this question ?' }, wrapper_class: 'panel', :class => "btn btn-danger btn-sm" ) %>
     </div>
   </div>
   <br/>

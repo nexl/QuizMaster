@@ -32,19 +32,20 @@ class StudentForm extends React.Component {
 
   render(){
     return(
-      <form className="form-horizontal" onSubmit={ e => this.handleAdd(e) }>
-        <div className="form-group">
-          <label className="control-label col-sm-2">Name</label>
-          <div className="col-sm-6">
+      <form className="form-inline" onSubmit={ e => this.handleAdd(e) }>
+        <div className="form-group hori">
+          <label className="hori" htmlFor="full_name">Student Name </label>
             <input type="text"
               className="form-control"
+              id="full_name"
               name="full_name"
               placeholder="Name"
               value={ this.state.full_name }
               onChange={ e => this.handleChange(e.target.value) } />
             </div>
-          </div>
-          <button type="submit" className="btn btn-primary">Add</button>
+        <div className="form-group">
+          <button type="submit" className="btn btn-default">Add</button>
+        </div>
       </form>
     )
   }

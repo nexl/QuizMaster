@@ -44,13 +44,13 @@ class Result extends React.Component {
           <span dangerouslySetInnerHTML={{__html: result.question_content}} />
         </td>
         <td>
-          { String(result.is_right) }
+          { String(result.is_right) == "true" ? "correct" : "wrong"}
         </td>
         </tr>
       )
     });
     return(
-      <table className="table table-hover">
+      <table className="table table-hover table-bordered">
         <thead>
           <tr>
             <th>Question</th>

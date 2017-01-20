@@ -1,25 +1,22 @@
-<%= form_for @quiz, url: {action: "create"},:html => {:class => "form-horizontal"}   do | tag| %>
-  <div class="form-group">
-    <%= tag.label :quiz_name, :class => "control-label col-sm-2" %>
-    <div class="col-sm-6">
-    <%= tag.text_field :quiz_name, :placeholder => "Quiz name", :required => true, :class => "form-control" %>
+<div class="panel panel-default">
+  <%= form_for @quiz, url: {action: "create"},:html => {:class => "form-horizontal"}   do | tag| %>
+    <div class="form-group">
+      <%= tag.label :quiz_name, :class => "control-label col-sm-2" %>
+      <div class="col-sm-6">
+      <%= tag.text_field :quiz_name, :placeholder => "Quiz name", :required => true, :class => "form-control" %>
+      </div>
     </div>
-  </div>
-  
-  <div>
-    <%= tag.fields_for :question do | f | %>
-      <%= render "question_fields", :f => f %>
-    <% end %>
-    <div class='form-group'>
-      <div class="col-sm-offset-1 col-sm-10">
+    
+    <div class='question-field'>
+      <%= tag.fields_for :question do | f | %>
+        <%= render "question_fields", :f => f %>
+      <% end %>
+      <div class='new-question'>
         <%= link_to_add_association 'Add new question', tag, :question, :class => "btn btn-default" %>
       </div>
     </div>
-  </div>
-
-  <div class="form-group">
-   <div class="col-sm-offset-1 col-sm-10">
-    <%= tag.submit "Create new quiz", class: "btn btn-default" %>
-    </div>
-  </div>
-<% end %>
+    
+    <br />
+      <%= tag.submit "Create new quiz", class: "btn btn-default" %>
+  <% end %>
+</div>

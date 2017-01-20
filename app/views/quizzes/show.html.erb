@@ -1,5 +1,5 @@
-<span>List questions</span>
-<table class="table table-hover">
+<h3>List questions</h3>
+<table class="table table-hover table-bordered">
   <thead>
     <tr>
       <th>Question</th>
@@ -12,7 +12,7 @@
     <% @quiz.each do | quiz | %>
     <tr>
       <td><%= quiz.question_content.html_safe %></td>
-      <td><%= quiz.answer %></td>
+      <td class="answer"><%= quiz.answer %></td>
       <td><%= link_to "Edit", edit_question_path(quiz) %></td>
       <td><%= link_to "Delete", question_path(quiz), :method => :delete %></td>
     </tr>
@@ -20,4 +20,4 @@
   </tbody>
 </table>
 
-<%= react_component('Student',{ quiz_id: params[:id] }, { prerender: true }) %>
+<%= react_component('Student', { quiz_id: params[:id] }, { prerender: true }) %>
