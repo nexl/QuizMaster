@@ -2,9 +2,9 @@ Rails.application.routes.draw do
   
   mount Bootsy::Engine => '/bootsy', as: 'bootsy'
     
-  get '/logon', :to => 'users#login'
+  get '/sign_in', :to => 'users#login'
   post '/login', :to => 'sessions#create'
-  delete '/logout', :to => 'sessions#destroy'
+  delete '/sign_out', :to => 'sessions#destroy'
   get 'tryouts/:quizz_id/:token', :to =>  "tryouts#show", :as => 'tryout'
 
   resources :questions

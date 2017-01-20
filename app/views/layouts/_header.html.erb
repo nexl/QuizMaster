@@ -16,10 +16,10 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <% if session[:user_id].nil?%>
-              <li><a href="<%= new_user_path %>">Register</a></li>
-              <li><a href="<%= logon_path %>">Login</a></li>
+              <li><a href="<%= sign_in_path %>">Sign in</a></li>
+              <li><a href="<%= new_user_path %>">Sign up</a></li>
             <% else %>
-              <li><a href="<%= logout_path %>" data-method="delete">Logout</a></li>
+              <li><a href="<%= sign_out_path %>" data-method="delete">Sign out</a></li>
             <% end %>
           </ul>
         </li>
@@ -28,7 +28,7 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Quiz <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="<%= new_quiz_path %>">New Quiz</a></li>
-            <li><a href="<%= quizzes_path %>">List Quiz</a></li>
+            <li><a href="<%= quizzes_path %>">Quiz Index</a></li>
           </ul>
         </li>
         <li class="dropdown">
