@@ -1,6 +1,10 @@
 class ApplicationController < ActionController::Base
   #  protect_from_forgery with: :exception
   protect_from_forgery with: :null_session
+  
+  # Require natton and nkf for Kanji -> yomi
+  require 'natto'
+  require 'nkf'
 
   def logged_in?
     session[:user_id].present?

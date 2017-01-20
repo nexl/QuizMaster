@@ -43,6 +43,7 @@ gem "cocoon"
 gem 'humanize', '~> 1.1'
 gem 'react-rails'
 gem 'axios_rails'
+gem 'natto', '~> 1.1'
 # End of custom gem 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
