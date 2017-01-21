@@ -53,6 +53,7 @@ group :development, :test do
   gem 'byebug', platform: :mri
   gem 'rspec-rails', '~> 3.5'
   gem 'factory_girl_rails', '~> 4.5.0'
+  gem "jasmine-rails"
 end
 
 group :test do

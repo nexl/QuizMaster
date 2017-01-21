@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
   mount Bootsy::Engine => '/bootsy', as: 'bootsy'
     
   get '/sign_in', :to => 'users#login'
