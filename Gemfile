@@ -57,7 +57,7 @@ end
 
 group :test do
   # gem 'faker', '~> 1.6.1'
-  # gem 'shoulda-matchers', '~> 3.0', require: false
+  gem 'shoulda-matchers', '~> 3.0', require: false
 end
 
 group :development do
