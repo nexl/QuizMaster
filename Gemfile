@@ -51,6 +51,13 @@ gem 'natto', '~> 1.1'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem 'rspec-rails', '~> 3.5'
+  gem 'factory_girl_rails', '~> 4.5.0'
+end
+
+group :test do
+  # gem 'faker', '~> 1.6.1'
+  # gem 'shoulda-matchers', '~> 3.0', require: false
 end
 
 group :development do
