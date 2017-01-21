@@ -6,4 +6,5 @@ class Quizz < ApplicationRecord
 
   accepts_nested_attributes_for :question, :allow_destroy => true
 
+  validates_presence_of :created_by, :quiz_name
 end
