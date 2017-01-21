@@ -11,6 +11,8 @@ module Quiz
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
+    config.assets.version = '1.0'
+    config.assets.precompile += %w['*.js', '*.css', '*.css.erb','*.png', '*.jpg', '*.jpeg' ,'*.gif', '*.erb', '*.svg', '*.scss', '*.sass', '*.svg']
   end
 end
 

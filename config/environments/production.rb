@@ -16,7 +16,6 @@ Rails.application.configure do
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
-  config.public_file_server.enabled = true
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
@@ -26,7 +25,8 @@ Rails.application.configure do
   #config.assets.compile = false
   config.assets.compile = true
   config.assets.precompile += %w['*.js', '*.css', '*.css.erb','*.png', '*.jpg', '*.jpeg' ,'*.gif', '*.erb', '*.svg', '*.scss', '*.sass', '*.svg', '*.eot', '*.woff', '*.ttf']
-  config.serve_static_files = true
+  config.public_file_server.enabled = true
+  config.assets.digest = true
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
