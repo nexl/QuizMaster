@@ -1,18 +1,22 @@
-<table class="table table-hover table-bordered">
-  <thead>
-    <tr>
-      <th>Quiz name</th>
-      <th>Owner</th>
-      <th>Quiz detail</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @quiz.each do | quiz | %>
-    <tr>
-      <td><%= quiz.quiz_name%></td>
-      <td><%= quiz.user.full_name%></td>
-      <td><%= link_to "Detail", quiz_path(quiz.id), { :class => "btn btn-sm btn-default" } %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+<% if !@quiz.empty? %>
+  <table class="table table-hover table-bordered">
+    <thead>
+      <tr>
+        <th>Quiz name</th>
+        <th>Owner</th>
+        <th>Quiz detail</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @quiz.each do | quiz | %>
+      <tr>
+        <td><%= quiz.quiz_name%></td>
+        <td><%= quiz.user.full_name%></td>
+        <td><%= quiz_detail(quiz.id)%></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  Sorry, we can't find your quiz data, or do you want to <%= new_quiz %>
+<% end %>
