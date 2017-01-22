@@ -61,6 +61,14 @@ class Quiz extends React.Component{
         </div>
       )
     }
+    // If id or token is wrong
+    else if (this.state.question.status == "not_found"){
+      return(
+        <div className="panel-setting">
+          <p>Sorry, we can't find your data</p>
+        </div>
+      )
+    }
     // Loading ... 
     if (this.state.question.length == 0){
       return(
