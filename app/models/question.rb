@@ -4,7 +4,7 @@ class Question < ApplicationRecord
 
   belongs_to :quizz, :foreign_key => "quizz_id"
 
-  validates_presence_of :quizz_id, :question_content, :answer
+  validates_presence_of :question_content, :answer
 
   def next
     self.class.where("id > ? and quizz_id = ?", id, quizz_id).first
