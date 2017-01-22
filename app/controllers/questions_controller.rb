@@ -3,14 +3,6 @@ class QuestionsController < ApplicationController
   before_action :require_login
   before_action :is_owner?, :only => [:edit]
 
-  def index
-    @question = Question.all
-  end
-
-  def show
-    @question = Question.find(params[:id])
-  end
-
   def new 
     @question ||= Question.new
   end
