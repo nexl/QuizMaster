@@ -8,9 +8,11 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      flash[:success] = "Registration success, please login with your email and password"
       redirect_to sign_in_path
     else
-      redirect_to root_path
+    flash[:error] = @user.errors.first[1] if @user.errors[:email].present?
+      redirect_to new_user_path
     end
   end
 

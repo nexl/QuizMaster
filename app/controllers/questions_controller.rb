@@ -15,6 +15,7 @@ class QuestionsController < ApplicationController
   def update
     @question = Question.find(params[:id])
     if @question.update_attributes(question_params)
+      flash[:success] = "Question [#{@question.question_content}] has been updated succesfully"
       redirect_to quiz_path(@question.quizz_id)
     else
       redirect_to root_path
@@ -24,6 +25,7 @@ class QuestionsController < ApplicationController
   def create
     @question = Question.new(question_params)
     if @question.save
+      flash[:success] = "Question [#{@question.question_content}] was added to [#{@question.quizz.quiz_name}]"
       redirect_to quiz_path(@question.quizz_id)
     else
       redirect_to root_path
@@ -34,6 +36,7 @@ class QuestionsController < ApplicationController
     question = Question.find(params[:id])
     quiz = question.quizz_id
     question.destroy
+    flash[:success] = "Question [#{question.question_content}] has been deleted succesfully from Quiz[#{question.quizz.quiz_name}]"
     redirect_to quiz_path(quiz)
   end
 

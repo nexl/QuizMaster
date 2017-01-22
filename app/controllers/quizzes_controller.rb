@@ -23,6 +23,7 @@ class QuizzesController < ApplicationController
   def create
     @quiz = Quizz.new(quiz_params.merge({ :created_by => current_user.id}))
     if @quiz.save
+      flash[:success] = "Quiz [#{@quiz.quiz_name}] has been successfully created"
       redirect_to quiz_path(@quiz)
     else
       Rails.logger.info(@quiz.errors.inspect)
