@@ -14,20 +14,33 @@ class StudentForm extends React.Component {
 
   handleAdd(e) {
     e.preventDefault();
-    var self = this;
-      $.ajax({
-        url: '/api/v1/students',
-        method: 'POST',
-        data: { student: self.state },
-        success: function(data) {
-          // If create new student is success, reset textfield and push new data to list students
-          self.props.handleAdd(data);
-          self.setState({ full_name : ''});
-        },
-        error: function(xhr, status, error) {
-          //console.log(xhr.responseText);
-        }
-      })
+    if(this.isValid() == true){
+      var self = this;
+        $.ajax({
+          url: '/api/v1/students',
+          method: 'POST',
+          data: { student: self.state },
+          success: function(data) {
+            //success, reset textfield and push new data to list students
+            self.props.handleAdd(data);
+            self.setState({ full_name : ''});
+          },
+          error: function(xhr, status, error) {
+            //console.log(xhr.responseText);
+          }
+        })
+    }
+    // If there's no student name @textfield
+    else{ 
+      alert("Student name must be filled")
+      full_name.focus(); 
+    }
+  }
+
+  // Check if full_name state is empty or not
+  isValid(){
+    if(this.state.full_name) return true;
+    else return false;
   }
 
   render(){
@@ -40,6 +53,7 @@ class StudentForm extends React.Component {
               id="full_name"
               name="full_name"
               placeholder="Name"
+              ref="full_name"
               value={ this.state.full_name }
               onChange={ e => this.handleChange(e.target.value) } />
             </div>
