@@ -5,6 +5,7 @@ class QuestionsController < ApplicationController
 
   def new 
     @question ||= Question.new
+    @has_quiz = Quizz.where(:created_by => current_user.id)
   end
 
   def edit 
