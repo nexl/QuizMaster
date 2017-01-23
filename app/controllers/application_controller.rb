@@ -15,6 +15,10 @@ class ApplicationController < ActionController::Base
     redirect_to root_path unless logged_in?
   end
 
+  def does_not_require_login
+    redirect_to root_path if logged_in?
+  end
+
   # Get current user info
   def current_user
     return unless session[:user_id]

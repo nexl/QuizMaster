@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  
+  before_action :does_not_require_login, :only => [:new, :login]
+
   def index; end
   
   def new 
