@@ -1,8 +1,7 @@
 <div class="panel panel-default">
-  <%= heading_title("Sign In")%>
   <%= feedback(flash[:success],'success') %>
   <%= feedback(flash[:error],'error') %>
-  
+  <%= heading_title("Sign In")%>
   <div class='row'>
     <div class='col-md-10 col-md-offset-2'>
       <%= form_for @user, url: login_path,:html => {:class => "form-horizontal"}   do | tag| %>

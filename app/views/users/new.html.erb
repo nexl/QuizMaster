@@ -1,6 +1,6 @@
 <div class="panel panel-default">
-  <%= heading_title("Sign Up")%>
   <%= feedback(flash[:error],'danger') %>
+  <%= heading_title("Sign Up")%>
   <div class='row'>
     <div class='col-md-10 col-md-offset-2'>
       <%= form_for @user, url: {action: "create"},:html => {:class => "form-horizontal"}   do | tag| %>
