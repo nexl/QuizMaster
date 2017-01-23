@@ -14,7 +14,7 @@ class UsersController < ApplicationController
       flash[:success] = "Registration success, please login with your email and password"
       redirect_to sign_in_path
     else
-    flash[:error] = @user.errors.first[1] if @user.errors[:email].present?
+    flash[:error] = @user.errors.first[1]
       redirect_to new_user_path
     end
   end

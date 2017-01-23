@@ -10,7 +10,8 @@ class SessionsController < ApplicationController
       flash[:success] = "Login success"
       redirect_to quizzes_path
     else
-      redirect_to sign_in
+      flash[:error] = 'Invalid email or password'
+      redirect_to sign_in_path
     end
   end
 
