@@ -39,8 +39,8 @@ class StudentForm extends React.Component {
 
   // Check if full_name state is empty or not
   isValid(){
-    if(this.state.full_name) return true;
-    else return false;
+    var valid = this.state.full_name ? true : false
+    return valid;
   }
 
   render(){
@@ -53,12 +53,13 @@ class StudentForm extends React.Component {
               id="full_name"
               name="full_name"
               placeholder="Name"
+              required="true"
               ref="full_name"
               value={ this.state.full_name }
               onChange={ e => this.handleChange(e.target.value) } />
             </div>
         <div className="form-group">
-          <button type="submit" className="btn btn-default">Add</button>
+          <button type="submit" className="btn btn-default" ref="submit">Add</button>
         </div>
       </form>
     )

@@ -27,27 +27,38 @@ class Quiz extends React.Component{
   }
 
   // Submit answer and result : true/false
-  handleClick(question_id){
-    var answer = this.refs.answer.value; 
-    question_index = this.state.index + 1;
-    this.setState({ index: question_index, answer: '', load: false });
-    $.ajax({
-      url: '/api/v1/quizzes/1',
-      type: 'PATCH',
-      data: { quiz: {
-        question_id : question_id,
-        answer: answer,
-      }},
-      success: (e) => {
-        //console.log('success', e)
-        this.setState({ load: true })
-      },
-      error: function(xhr, textStatus, errorThrown){
-        //console.log(xhr.responseText);
-      }
-    });
+  handleClick(e, question_id){
+    e.preventDefault();
+    if (this.isValid()){
+      var answer = this.refs.answer.value; 
+      question_index = this.state.index + 1;
+      this.setState({ index: question_index, answer: '', load: false });
+      $.ajax({
+        url: '/api/v1/quizzes/1',
+        type: 'PATCH',
+        data: { quiz: {
+          question_id : question_id,
+          answer: answer,
+        }},
+        success: (e) => {
+          //console.log('success', e)
+          this.setState({ load: true })
+        },
+        error: function(xhr, textStatus, errorThrown){
+          //console.log(xhr.responseText);
+        }
+      });
+    }
+    else{
+      this.refs.answer.focus();
+      alert("Answer must be filled");
+    }
   }
 
+  isValid(){
+    var valid = this.state.answer ? true : false
+    return valid;
+  }
   render(){
     // Mapping questions
     var current = this.state.question[this.state.index];
@@ -80,7 +91,7 @@ class Quiz extends React.Component{
     // Quiz found, Load 1 by 1
     if (this.state.question.length > this.state.index){
       return(
-        <form className="form-horizontal" action="javascript:myFunction(); return false;">
+        <form className="form-horizontal" onSubmit={(e) => this.handleClick(e,current.id) }>
           <div className="form-group">
             <label className="control-label col-sm-2">Question</label>
             <div className="col-sm-10">
@@ -97,7 +108,7 @@ class Quiz extends React.Component{
 
             <div className="form-group">
              <div className="col-sm-offset-2 col-sm-10">
-              <input type="button" name="commit" value="Answer" className="btn btn-default" onClick={() => this.handleClick(current.id) }/>
+              <input type="submit" name="commit" value="Answer" className="btn btn-default" />
               </div>
             </div>
         </form>

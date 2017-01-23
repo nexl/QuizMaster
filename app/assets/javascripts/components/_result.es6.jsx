@@ -60,7 +60,7 @@ class Result extends React.Component {
         <tbody>
          { res }
           <tr>
-            <td colSpan="2">Your score is : { this.state.correct } true and { this.state.wrong} false</td>
+            <td colSpan="2">Your score is : { this.state.correct } from { this.state.wrong + this.state.correct } </td>
           </tr>
         </tbody>
       </table>
