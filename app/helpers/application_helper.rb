@@ -14,8 +14,14 @@ module ApplicationHelper
 
   def bootstrap_alert(message, type)
     content_tag :div, :class => "alert alert-#{type}" do
-      concat content_tag(:a, '&times;'.html_safe, href: '#' , class: "close", data: { dismiss: 'alert' })
+      concat content_tag(:a, '&times;'.html_safe, :href => '#' , :class=> "close", :data => { :dismiss => 'alert' })
       concat(message.html_safe)
+    end
+  end
+
+  def heading_title(message)
+    content_tag:div, :class => "row" do
+      concat content_tag(:h3, message, :class => "text-center")
     end
   end
 end

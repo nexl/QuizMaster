@@ -1,4 +1,6 @@
+<%= feedback(flash[:success],'success') %>
 <% if !@quiz.empty? %>
+  <%= heading_title("List Quiz")%>
   <table class="table table-hover table-bordered">
     <thead>
       <tr>

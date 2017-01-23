@@ -1,38 +1,43 @@
 <div class="panel panel-default">
+  <%= heading_title("Sign Up")%>
   <%= feedback(flash[:error],'danger') %>
-  <%= form_for @user, url: {action: "create"},:html => {:class => "form-horizontal"}   do | tag| %>
-    <div class="form-group">
-      <%= tag.label :first_name, :class => "control-label col-sm-2" %>
-      <div class="col-sm-6">
-      <%= tag.text_field :first_name, :placeholder => "First name", :required => true, :class => "form-control" %>
-      </div>
-    </div>
+  <div class='row'>
+    <div class='col-md-10 col-md-offset-2'>
+      <%= form_for @user, url: {action: "create"},:html => {:class => "form-horizontal"}   do | tag| %>
+        <div class="form-group">
+          <%= tag.label :first_name, :class => "control-label col-sm-2" %>
+          <div class="col-sm-6">
+          <%= tag.text_field :first_name, :placeholder => "First name", :required => true, :class => "form-control" %>
+          </div>
+        </div>
 
-    <div class="form-group">
-      <%= tag.label :last_name, :class => "control-label col-sm-2" %>
-      <div class="col-sm-6">
-      <%= tag.text_field :last_name, :placeholder => "Last name", :required => true, :class => "form-control" %>
-      </div>
-    </div>
+        <div class="form-group">
+          <%= tag.label :last_name, :class => "control-label col-sm-2" %>
+          <div class="col-sm-6">
+          <%= tag.text_field :last_name, :placeholder => "Last name", :required => true, :class => "form-control" %>
+          </div>
+        </div>
 
-    <div class="form-group">
-      <%= tag.label :email, :class => "control-label col-sm-2" %>
-      <div class="col-sm-6">
-      <%= tag.email_field :email, :placeholder => "Email", :class => "form-control" %>
-      </div>
-    </div>
+        <div class="form-group">
+          <%= tag.label :email, :class => "control-label col-sm-2" %>
+          <div class="col-sm-6">
+          <%= tag.email_field :email, :placeholder => "Email", :class => "form-control" %>
+          </div>
+        </div>
 
-    <div class="form-group">
-      <%= tag.label :password, :class => "control-label col-sm-2" %>
-      <div class="col-sm-6">
-      <%= tag.password_field :password, :class => "form-control" %>
-      </div>
-    </div>
+        <div class="form-group">
+          <%= tag.label :password, :class => "control-label col-sm-2" %>
+          <div class="col-sm-6">
+          <%= tag.password_field :password, :class => "form-control" %>
+          </div>
+        </div>
 
-    <div class="form-group">
-     <div class="col-sm-offset-2 col-sm-10">
-      <%= tag.submit "Register", class: "btn btn-default" %>
-      </div>
-    </div>
-  <% end %>
+        <div class="form-group">
+         <div class="col-sm-offset-2 col-sm-10">
+          <%= tag.submit "Sign Up", class: "btn btn-default" %>
+          </div>
+        </div>
+      <% end %>
+    </div>  
+  </div>
 </div>
