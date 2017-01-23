@@ -12,4 +12,8 @@ class Student < ApplicationRecord
     self.token = SecureRandom.urlsafe_base64.to_s
   end
 
+  def self.student_data(id, token)
+    where(:id => id, :token => token)
+  end
+
 end

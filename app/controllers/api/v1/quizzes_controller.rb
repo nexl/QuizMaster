@@ -8,14 +8,14 @@ class Api::V1:: QuizzesController < ApplicationController
 
   def show
     # Validate student id and token
-    student = Student.where(:id => params[:id], :token => params[:token])
+    student = Student.student_data(params[:id], params[:token])
     # If token and id are not exist in db
     if student.empty?
       quiz = {:status => 'not_found'}
       render :json => quiz
     else
       # Quiz mode
-      quiz = StudentAnswer.joins(:question, :student).where(:student_id => params[:id], :answer => nil).where("students.token = ?", params[:token]).select("question_content, student_answers.id")
+      quiz = StudentAnswer.remaining_question(params[:id], params[:token])
       # If quiz already finished (no more questions)
       if quiz.empty?
         quiz = {:status => 'finished'}
@@ -54,7 +54,7 @@ class Api::V1:: QuizzesController < ApplicationController
 
   # Quiz result
   def result
-    result = StudentAnswer.joins(:question).where(:student_id => params[:id]).select("question_content, is_right, student_answers.id")
+    result = StudentAnswer.get_result(params[:id])
     render json: result
   end
 

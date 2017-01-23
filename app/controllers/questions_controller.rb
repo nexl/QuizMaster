@@ -43,7 +43,7 @@ class QuestionsController < ApplicationController
   private
 
   def question_params
-    params.require(:question).permit(:id, :quizz_id, :question_content, :answer)
+    params.require(:question).permit(:id, :quizz_id, :question_content, :answer, :bootsy_image_gallery_id)
   end
 
   # Check if the current user is owner of this question ?
