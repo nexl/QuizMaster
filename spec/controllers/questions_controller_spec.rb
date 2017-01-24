@@ -6,17 +6,6 @@ RSpec.describe QuestionsController, type: :controller do
   let(:quiz)    { FactoryGirl.create(:quizz, :created_by => user.id)}
   let(:question){ FactoryGirl.create(:question, :quizz_id => quiz.id)}
 
-  #Index
-  describe "GET #index" do
-    it "Question index page" do
-      user = FactoryGirl.create(:user)
-      login(user.id)
-      get :index
-      expect(response).to be_success
-      expect(response).to have_http_status(200)
-    end
-  end
-
   # New
   describe "GET #new" do
     it "Open new question page" do
@@ -33,14 +22,6 @@ RSpec.describe QuestionsController, type: :controller do
       new_question = FactoryGirl.attributes_for(:question, :quizz_id => quiz.id)
       login(user.id)
       expect { post :create, :params => { :question => new_question } }.to change(Question, :count).by(1) 
-    end
-  end
-
-  # Show
-  describe "GET #show" do
-    it "Show question page" do
-      login(user.id)
-      get :show, :params => { :id => question.id }
     end
   end
 
