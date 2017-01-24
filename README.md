@@ -1,24 +1,43 @@
-# README
+# QuizMaster 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+QuizMaster is a simple quiz-app, that allows you to:
+* Create quizzes
+* Create, update, and delete questions
+* Assign students, and system will show the score based on their answers
 
-Things you may want to cover:
+### Specs
+* Ruby 2.3.3
+* Rails 5.0.1
+* React v15.3.0
+* Psql 9.5
+* [Mecab](https://taku910.github.io/mecab/)
 
-* Ruby version
+### Installation
 
-* System dependencies
+```sh
+$ git clone git@github.com:nexl/QuizMaster.git
+$ bundle install
+$ rake db:create
+$ rake db:migrate
+```
 
-* Configuration
+### Optional (If you want to use Kanji - Hiragana converter, on Mac OS with Homebrew)
+```sh
+$ brew install mecab
+$ brew install mecab-ipadic
+```
 
-* Database creation
+### Optional (If you want to use Kanji - Hiragana converter, on Linux)
+```sh
+$ sudo apt-get install mecab libmecab-dev mecab-ipadic
+$ sudo aptitude install mecab-ipadic-utf8
+$ sudo apt-get install python-mecab
+```
 
-* Database initialization
+livedemo
+```sh
+http://45.32.34.196/
+```
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+email: demo@demo.com
+password: demodemo
