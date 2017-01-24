@@ -1,5 +1,7 @@
+<div class="panel panel-default">
 <%= form_for @question, url: question_path(@question),:html => {:class => "form-horizontal"}   do | question | %>
- <%= render "form", :question => question %>
+  <%= heading_title("Edit Question")%>
+  <%= render "form", :question => question %>
 
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
@@ -7,4 +9,5 @@
     </div>
   </div>
 <% end %>
+</div>
                

@@ -16,7 +16,7 @@ const StudentListHeader = ({student, handleDelete}) =>{
         <thead>
           <tr>
             <th>Student name</th>
-            <th>Tryout</th>
+            <th>Start Quiz</th>
             <th>Delete</th>
           </tr>
         </thead>

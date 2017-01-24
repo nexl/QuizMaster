@@ -76,7 +76,7 @@ class Quiz extends React.Component{
     else if (this.state.question.status == "not_found"){
       return(
         <div className="panel-setting">
-          <p>Sorry, we can't find your data</p>
+          <p>Sorry, we can't find your session</p>
         </div>
       )
     }

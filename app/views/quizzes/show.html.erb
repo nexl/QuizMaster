@@ -1,6 +1,6 @@
 <% if !@list_question.empty? %>
 <%= feedback(flash[:success],'success') %>
-<h3>List questions</h3>
+<h3>Questions List</h3>
 <table class="table table-hover table-bordered">
   <thead>
     <tr>
@@ -25,5 +25,5 @@
 <%= react_component('Student', { quiz_id: params[:id] }, { prerender: true }) %>
 
 <% else %>
- This quiz [<%= @quiz.quiz_name %>] has no questions, do you want to <%= new_question(@quiz.id) %>
+Quiz [<%= @quiz.quiz_name %>] has no questions, do you want to <%= new_question(@quiz.id) %>
 <% end %>

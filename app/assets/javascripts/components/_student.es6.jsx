@@ -51,7 +51,7 @@ class Student extends React.Component {
          <h3>Assign new student</h3>
          <StudentForm quiz_id={ this.props.quiz_id } handleAdd={ event => this.handleAdd(event) } />
          <br/>
-         <h3>List students</h3>
+         <h3>Students List</h3>
          <StudentListHeader student={ this.state.students } handleDelete={ index => this.handleDelete(index)} />
        </div>
       )

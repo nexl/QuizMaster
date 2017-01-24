@@ -1,5 +1,5 @@
 <div class="form-group">
-  <%= question.label :quizz_id, :class => "control-label col-sm-2" %>
+  <%= question.label "Quiz name", :class => "control-label col-sm-2" %>
   <div class="col-sm-6">
     <%= question.select(:quizz_id, options_for_select(list_quiz(session[:user_id]), params[:quiz_id].present? ? params[:quiz_id] : question.object.quizz_id), {}, { :class => "form-control" }) %>
   </div>
