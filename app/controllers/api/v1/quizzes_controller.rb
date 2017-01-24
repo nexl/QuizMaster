@@ -27,14 +27,17 @@ class Api::V1:: QuizzesController < ApplicationController
     end
   end
 
+  # Answer quiz [question]
   def update 
     question = StudentAnswer.find(params[:quiz][:question_id])
     question.answer = params[:quiz][:answer]
     answer = question.question.answer
     if answer.downcase == params[:quiz][:answer].downcase
       question.is_right = true
-    # Humanize numbers, like 6 -> six
-    elsif answer.to_i.humanize == params[:quiz][:answer].downcase
+    # Humanize numbers, like 6 -> six, 21 -> twenty-one, twenty one
+    elsif humanize(answer.to_i.humanize, params[:quiz][:answer].downcase)
+      question.is_right = true
+    elsif humanize_string(answer.downcase, params[:quiz][:answer].downcase)
       question.is_right = true 
     else
       # Check if answer is Japanese  
@@ -65,6 +68,7 @@ class Api::V1:: QuizzesController < ApplicationController
   end
 
   private
+
   def item_params
     params.require(:quiz).permit(:id, :student_id, :question_id, :answer, :is_right) 
   end
@@ -89,7 +93,32 @@ class Api::V1:: QuizzesController < ApplicationController
     return true if result[0] == hiragana
   end
 
+  #Number to words
+  def humanize(answer, param)
+    if answer == param
+      true
+    # Treat - as space, ex: twenty-one and twenty one  
+    elsif answer.sub('-', ' ') == param
+      true
+    else
+      false
+    end
+  end
+
+  def humanize_string(answer, param)
+    temp = answer.split
+    temp.map!{ | idx |
+      idx = is_i?(idx) ? idx.to_i.humanize.sub('-', ' ') : idx
+    }
+    new_answer = temp.join(' ') ? true : false
+   end
+
   def is_japanese?(input)
     (input =~ /\p{Han}|\p{Katakana}|\p{Hiragana}/) ? true : false
   end
+
+  def is_i?(input)
+    (input =~ /\A[-+]?[0-9]+\z/) ? true : false
+  end
+
 end
