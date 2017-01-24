@@ -35,7 +35,7 @@ class Api::V1:: QuizzesController < ApplicationController
     if answer.downcase == params[:quiz][:answer].downcase
       question.is_right = true
     # Humanize numbers, like 6 -> six, 21 -> twenty-one, twenty one
-    elsif humanize(answer.to_i.humanize, params[:quiz][:answer].downcase)
+    elsif humanize(answer.to_i.humanize, params[:quiz][:answer].downcase) && !has_space?(answer.downcase)
       question.is_right = true
     elsif humanize_string(answer.downcase, params[:quiz][:answer].downcase)
       question.is_right = true 
@@ -110,7 +110,7 @@ class Api::V1:: QuizzesController < ApplicationController
     temp.map!{ | idx |
       idx = is_i?(idx) ? idx.to_i.humanize.sub('-', ' ') : idx
     }
-    new_answer = temp.join(' ') ? true : false
+    param == temp.join(' ') ? true : false
    end
 
   def is_japanese?(input)
@@ -119,6 +119,10 @@ class Api::V1:: QuizzesController < ApplicationController
 
   def is_i?(input)
     (input =~ /\A[-+]?[0-9]+\z/) ? true : false
+  end
+
+  def has_space?(input)
+    (input =~ /\s/) ? true : false
   end
 
 end
