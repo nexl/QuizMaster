@@ -7,8 +7,8 @@ class User < ApplicationRecord
   ALPHABET_ONLY = /[A-Za-z\d]/i
   EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
-  validates :first_name, :format => { :with => ALPHABET_ONLY, :message =>'Please check your first name' } 
-  validates :last_name, :format => { :with => ALPHABET_ONLY, :message =>'Please check your last name' }
+  validates :first_name, :presence => true, :format => { :with => ALPHABET_ONLY, :message =>'Please check your first name' } 
+  validates :last_name, :presence => true, :format => { :with => ALPHABET_ONLY, :message =>'Please check your last name' }
   validates :email, :presence => true, :format => { :with => EMAIL_REGEX, :message => "Email format is wrong" }, :uniqueness => { :message => "This email already registered"}
   validates :password, :presence => true
 

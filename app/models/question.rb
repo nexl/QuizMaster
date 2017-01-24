@@ -1,5 +1,5 @@
 class Question < ApplicationRecord
-
+  default_scope {order(:id => "ASC")}
   has_many :student_answer
 
   belongs_to :quizz, :foreign_key => "quizz_id"
