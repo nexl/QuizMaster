@@ -33,11 +33,3 @@ $ sudo apt-get install mecab libmecab-dev mecab-ipadic
 $ sudo aptitude install mecab-ipadic-utf8
 $ sudo apt-get install python-mecab
 ```
-
-livedemo
-```sh
-http://45.32.34.196/
-```
-
-email: demo@demo.com
-password: demodemo
